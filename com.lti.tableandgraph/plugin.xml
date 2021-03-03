@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   
+   
+    <extension
+         point="org.eclipse.ui.views">
+          <category
+            name="TableCategory"
+            id="com.lti.tableandgraph">
+      </category>
+      <view	
+           id="com.lti.tableandgraph.views.GraphView" 
+           name="GraphView"
+           icon="icons/graph.png"
+           class="com.lti.tableandgraph.views.GraphView"
+           category="com.lti.tableandgraph"
+           inject="true">
+      </view>     
+   </extension>
+
+   <extension
+         point="org.eclipse.ui.views">
+      <category
+            name="TableCategory"
+            id="com.lti.tableandgraph">
+      </category>
+      <view
+            id="com.lti.tableandgraph.views.TableView"
+            name="TableView"
+            icon="icons/windows_table.ico"
+            class="com.lti.tableandgraph.views.TableView"
+            category="com.lti.tableandgraph"
+            inject="true">
+      </view>
+   </extension> 
+   
+   <extension
+         point="org.eclipse.ui.views">
+      <category
+            name="TableCategory"
+            id="com.lti.tableandgraph">
+      </category>
+      <view
+            id="com.lti.charts.NebulaTable"
+            name="NebulaTableView"
+            icon="icons/windows_table.ico"
+            class="com.lti.charts.NebulaTable"
+            category="com.lti.tableandgraph"
+            inject="true">
+      </view>
+   </extension> 
+   
+    <extension
+         point="org.eclipse.ui.views">
+          <category
+            name="TableCategory"
+            id="com.lti.tableandgraph">
+      </category>
+      <view	
+           id="com.lti.charts.PieChartView" 
+           name="PieChartView"
+           icon="icons/graph.png"
+           class="com.lti.charts.PieChartView"
+           category="com.lti.tableandgraph"
+           inject="true">
+      </view>     
+   </extension> 
+   
+   
+   
+   <extension
+         point="org.eclipse.ui.views">
+          <category
+            name="TableCategory"
+            id="com.lti.tableandgraph">
+      </category>
+      <view	
+           id="com.lti.charts.BarChartView" 
+           name="BarChartView"
+           icon="icons/graph.png"
+           class="com.lti.charts.BarChartView"
+           category="com.lti.tableandgraph"
+           inject="true">
+      </view>     
+   </extension> 
+   
+   
+    <extension
+         point="org.eclipse.ui.views">
+          <category
+            name="TableCategory"
+            id="com.lti.tableandgraph">
+      </category>
+      <view	
+           id="com.lti.charts.XYLineChartView" 
+           name="XYLineChartView"
+           icon="icons/graph.png"
+           class="com.lti.charts.XYLineChartView"
+           category="com.lti.tableandgraph"
+           inject="true">
+      </view>     
+   </extension> 
+   
+   <extension
+         point="org.eclipse.ui.views">
+      <category
+            name="TableCategory"
+            id="com.lti.tableandgraph">
+      </category>
+      <view
+            id="com.lti.charts.TabularViewWithGraph"
+            name="TabularViewWithGraph"
+            icon="icons/windows_table.ico"
+            class="com.lti.charts.TabularViewWithGraph"
+            category="com.lti.tableandgraph"
+            inject="true">
+      </view>
+   </extension>
+   
+    <extension
+         point="org.eclipse.ui.views">
+          <category
+            name="TableCategory"
+            id="com.lti.tableandgraph">
+      </category>
+      <view	
+           id="com.lti.charts.LineChartView" 
+           name="LineChartView"
+           icon="icons/graph.png"
+           class="com.lti.charts.LineChartView"
+           category="com.lti.tableandgraph"
+           inject="true">
+      </view>     
+   </extension> 
+   
+   <extension
+         point="org.eclipse.ui.views">
+          <category
+            name="TableCategory"
+            id="com.lti.tableandgraph">
+      </category>
+      <view	
+           id="com.lti.nebulaexamples" 
+           name="NatTableGridView"
+           icon="icons/graph.png"
+           class="com.lti.nebulaexamples.NatTableGridExamplePart"
+           category="com.lti.tableandgraph"
+           inject="true">
+      </view>     
+   </extension> 
+   
+   
+   
+   <extension
+         point="org.eclipse.ui.perspectiveExtensions">
+      <perspectiveExtension
+            targetID="org.eclipse.jdt.ui.JavaPerspective">
+         <view
+               id="com.lti.tableandgraph.views.TableView"
+               relative="org.eclipse.ui.views.ProblemView"
+               relationship="right"
+               ratio="0.5">
+         </view>
+      </perspectiveExtension>
+   </extension>
+   <extension
+         point="org.eclipse.help.contexts">
+      <contexts
+            file="contexts.xml">
+      </contexts>
+   </extension>
+
+</plugin>

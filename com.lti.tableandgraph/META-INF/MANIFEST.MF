@@ -1,0 +1,34 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Tableandgraph
+Bundle-SymbolicName: com.lti.tableandgraph;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: LTI
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.ui,
+ org.eclipse.ui.forms,
+ javax.inject,
+ org.eclipse.osgi,
+ org.eclipse.jface,
+ org.eclipse.e4.ui.model.workbench,
+ org.eclipse.e4.ui.di,
+ org.eclipse.e4.ui.services,
+ org.eclipse.e4.core.di.annotations,
+ org.eclipse.core.runtime,
+ org.eclipse.ui,
+ org.eclipse.nebula.visualization.xygraph,
+ org.eclipse.draw2d,
+ org.eclipse.nebula.widgets.nattable.core,
+ org.jfree.chart;bundle-version="1.0.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Import-Package: ca.odell.glazedlists,
+ javax.annotation,
+ org.eclipse.draw2d,
+ org.eclipse.nebula.visualization.xygraph.dataprovider,
+ org.eclipse.nebula.visualization.xygraph.figures,
+ org.eclipse.nebula.widgets.nattable.extension.glazedlists;version="1.5.0",
+ org.eclipse.nebula.widgets.nattable.extension.glazedlists.filterrow;version="1.6.0",
+ org.slf4j;version="1.7.2"
+Automatic-Module-Name: com.lti.tableandgraph;singleton:=true
+ 
+  

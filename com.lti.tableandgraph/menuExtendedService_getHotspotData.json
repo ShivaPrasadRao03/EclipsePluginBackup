@@ -1,0 +1,222 @@
+ {
+    "defect": [
+        {
+            "similarity": 0.0,
+            "Status": "Closed",
+            "Severity": "4-Low",
+            "Summary": "Regional Alerts: Year is not displayed and footer is wrong for alerts in Regional",
+            "DefectID": "6281",
+            "TestcaseID": null,
+            "Detectedby": "SS63374"
+        },
+        {
+            "similarity": 0.0,
+            "Status": "Closed",
+            "Severity": "4-Low",
+            "Summary": "A-1759926 P0133708 - FCO APAC July 2019 || Issue in Account Opening Form - DIY_Env_UAT2",
+            "DefectID": "7460",
+            "TestcaseID": null,
+            "Detectedby": "IS41922"
+        },
+        {
+            "similarity": 0.0,
+            "Status": "Closed",
+            "Severity": "1-ShowStopper",
+            "Summary": "UAT2 || ID || ECRM; SAO || SAO_Interface || SAO_Interface || After completing Lead Account application creation and greeting the customer using prospect ID; not getting any offer for the customer",
+            "DefectID": "9332",
+            "TestcaseID": null,
+            "Detectedby": "PM29330"
+        },
+        {
+            "similarity": 0.0,
+            "Status": "Closed",
+            "Severity": "3-Medium",
+            "Summary": "TH:- CCSTMT alert not generating for the SMS subcripted customers.",
+            "DefectID": "9630",
+            "TestcaseID": null,
+            "Detectedby": "ss66409"
+        },
+        {
+            "similarity": 0.0,
+            "Status": "Closed",
+            "Severity": "2-High",
+            "Summary": "Core 63 | TH | Scan & Pay | iOS & android | Getting unable to proceed with this transaction error",
+            "DefectID": "10081",
+            "TestcaseID": null,
+            "Detectedby": "ak68215"
+        },
+        {
+            "similarity": 0.0,
+            "Status": "Closed",
+            "Severity": "2-High",
+            "Summary": "AU | UAT | Project - A-1742142 - AP_Cards Lending Scrum Q3'19 - STMT EPP offers Installment amount in Email is populated incorrectly for requested customers(we checked 2 customers for each partner)",
+            "DefectID": "11031",
+            "TestcaseID": null,
+            "Detectedby": "jj17116"
+        },
+        {
+            "similarity": 0.0,
+            "Status": "Closed",
+            "Severity": "4-Low",
+            "Summary": "EMPREVAPPROVE - '<' is displayed in front of the promotion name when Merchant approves/rejects promotion",
+            "DefectID": "6495",
+            "TestcaseID": null,
+            "Detectedby": "SS63374"
+        },
+        {
+            "similarity": 0.0,
+            "Status": "Closed",
+            "Severity": "2-High",
+            "Summary": "MEMFIS||UAT2||MF|| Mismatch between template shared for advices and the actual advice",
+            "DefectID": "7464",
+            "TestcaseID": null,
+            "Detectedby": "ys14098"
+        },
+        {
+            "similarity": 0.0,
+            "Status": "Closed",
+            "Severity": "2-High",
+            "Summary": "Big Data - July - 2019 - Mortgage Refinance & Insight: Header Image is not populated correctly",
+            "DefectID": "9346",
+            "TestcaseID": null,
+            "Detectedby": "dk17248"
+        },
+        {
+            "similarity": 0.0,
+            "Status": "Closed",
+            "Severity": "2-High",
+            "Summary": "HK MY || Insurance API || Cannot get account id in GetEligiableSourceAccount while it do have savings under the customer",
+            "DefectID": "9636",
+            "TestcaseID": null,
+            "Detectedby": "jd06941"
+        },
+        {
+            "similarity": 0.0,
+            "Status": "Closed",
+            "Severity": "2-High",
+            "Summary": "Events: Business id passed as GCB instead of GCG",
+            "DefectID": "10092",
+            "TestcaseID": null,
+            "Detectedby": "ig13991"
+        },
+        {
+            "similarity": 0.0,
+            "Status": "Closed",
+            "Severity": "2-High",
+            "Summary": "UAT2-Citiplanner-Fulfilment-Backbutton-Not Capturing the latest edit",
+            "DefectID": "11075",
+            "TestcaseID": null,
+            "Detectedby": "ds59823"
+        },
+        {
+            "similarity": 0.0,
+            "Status": "Closed",
+            "Severity": "2-High",
+            "Summary": "Preauthorised txn  is declined by AFEWS when the input is to be declined Zip Code/Acq Bin; expectation is it should not be declined",
+            "DefectID": "6902",
+            "TestcaseID": null,
+            "Detectedby": "ms63095"
+        },
+        {
+            "similarity": 0.0,
+            "Status": "Closed",
+            "Severity": "2-High",
+            "Summary": "Project - A-1376913 - CNC Project - TRIAD implementation & Behavior Score | TRIAD | reject in embossing due to the â€˜Aâ€™ or â€˜Bâ€™ block code in card level",
+            "DefectID": "9390",
+            "TestcaseID": null,
+            "Detectedby": "jg22829"
+        }
+    ],
+    "codeModule": [],
+    "requirement": [
+        {
+            "reqId": "11",
+            "reqName": "New Account Creation",
+            "status": null,
+            "impacted": false,
+            "featureList": null
+        },
+        {
+            "reqId": "11",
+            "reqName": "New Account Creation",
+            "status": null,
+            "impacted": false,
+            "featureList": null
+        },
+        {
+            "reqId": "13",
+            "reqName": "Transfer money to account",
+            "status": null,
+            "impacted": false,
+            "featureList": null
+        }
+    ],
+    "testcase": [
+        {
+            "levelId": "TS01_Account_Creation",
+            "levelDes": "Creation of a new bank account in APANA Bank by inputing all the correct information. ",
+            "levelCode": "TC01_AC_Create new account with valid data",
+            "lastVerdict": null,
+            "precondition": null,
+            "priority": null,
+            "inProgress": false,
+            "defectsIds": null,
+            "defectList": null,
+            "name": null,
+            "status": null,
+            "lastExecutionDate": null,
+            "assignedTo": null,
+            "executionType": null,
+            "executionStartDateTime": 1570696086103,
+            "executionEndDateTime": 1570696131528,
+            "classList": null,
+            "requirementList": null,
+            "impacted": false,
+            "executed": false
+        },
+        {
+            "levelId": "TS01_Account_Creation",
+            "levelDes": " Creation of a new bank account in APANA Bank by inputing the same data information again ",
+            "levelCode": "TC04_AC_Create new account with same data",
+            "lastVerdict": null,
+            "precondition": null,
+            "priority": null,
+            "inProgress": false,
+            "defectsIds": null,
+            "defectList": null,
+            "name": null,
+            "status": null,
+            "lastExecutionDate": null,
+            "assignedTo": null,
+            "executionType": null,
+            "executionStartDateTime": 1570713665897,
+            "executionEndDateTime": 1570713727802,
+            "classList": null,
+            "requirementList": null,
+            "impacted": false,
+            "executed": false
+        },
+        {
+            "levelId": "TS05_Transfer_Money",
+            "levelDes": "Transfer Money from one account to another in APANA Bank by missing the details.",
+            "levelCode": "TC29_Transfer funds with missing account details",
+            "lastVerdict": null,
+            "precondition": null,
+            "priority": null,
+            "inProgress": false,
+            "defectsIds": null,
+            "defectList": null,
+            "name": null,
+            "status": null,
+            "lastExecutionDate": null,
+            "assignedTo": null,
+            "executionType": null,
+            "executionStartDateTime": 1582785509456,
+            "executionEndDateTime": 1582785564397,
+            "classList": null,
+            "requirementList": null,
+            "impacted": false,
+            "executed": false
+        }
+    ]
+}
