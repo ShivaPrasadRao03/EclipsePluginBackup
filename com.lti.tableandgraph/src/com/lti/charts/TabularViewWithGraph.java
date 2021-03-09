@@ -56,7 +56,7 @@ public class TabularViewWithGraph extends ViewPart {
 
 		//Table(Student): TableViewerColumn Names
 
-		String[] Col_names={"Student ID","Student Name","Gender","Branch"};
+		String[] Col_names={"Student ID","Student Name","Gender","Branches"};
 		for(int i=0;i<Col_names.length;i++)
 		{
 			TableViewerColumn tableViewerColumn = new TableViewerColumn(tableViewer, SWT.NONE);
@@ -91,7 +91,15 @@ public class TabularViewWithGraph extends ViewPart {
 			//                  System.out.println(s);  
 		}
 
-		parent.setLayout(new FillLayout());
+		FillLayout fillLayout = new FillLayout();
+
+	       fillLayout.type = SWT.VERTICAL;
+
+	       
+	       
+
+		parent.setLayout(fillLayout);
+		
 	}
 	public TableViewer getViewer() {
 		return tableViewer;
