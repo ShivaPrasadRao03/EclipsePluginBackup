@@ -164,7 +164,7 @@ public class NatTableGridExamplePart extends ViewPart{
 		
 	}
 	
-class BodyLayerStack<T> extends AbstractLayerTransform {
+ class BodyLayerStack<T> extends AbstractLayerTransform {
 		
 		private final SortedList<T> sortedList;
 		private final FilterList<T> filterList;

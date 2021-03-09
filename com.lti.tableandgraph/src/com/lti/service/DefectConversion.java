@@ -1,6 +1,8 @@
 package com.lti.service;
 import com.google.gson.Gson;
 import com.lti.model.Defect;
+import com.lti.model.FileList;
+
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -17,17 +19,18 @@ public class DefectConversion {
     
     }
 
-    private static Defect[] getDefectObject()
+    private static FileList[] getDefectObject()
     {
-    	 Defect[] defectArray = null;
-    	 try (Reader reader = new FileReader("C:\\Users\\SHIVAPRASAD\\Documents\\menuExtendedService_getHotspotData.json")) {
+    	 FileList[] defectArray = null;
+    	
+    	 try (Reader reader = new FileReader("C:\\Users\\SHIVAPRASAD\\Documents\\JSON\\CodeCoverage.json")) {
     	   Gson gson = new Gson();
-           
+    	  
 
             // Convert JSON File to Java Object
-             defectArray = gson.fromJson(reader, Defect[].class);
+             defectArray = gson.fromJson(reader, FileList[].class);
             
-             for(Defect defect : defectArray) {
+             for(FileList defect : defectArray) {
             	    System.out.println(defect);
             	}
 

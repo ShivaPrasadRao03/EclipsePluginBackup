@@ -275,7 +275,7 @@
                             },
                             {
                                 "name": "NewTest.java",
-                                "children": [
+                                 "children": [
                                     {
                                         "name": "No. of commits : 1",
                                         "children": null,
