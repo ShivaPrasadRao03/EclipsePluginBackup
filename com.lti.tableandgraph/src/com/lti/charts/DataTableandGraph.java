@@ -1,5 +1,6 @@
 package com.lti.charts;
 
+import java.awt.BasicStroke;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -38,6 +39,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.part.ViewPart;
 import org.jfree.chart.ChartFactory;
@@ -45,8 +47,17 @@ import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.PaintMap;
 import org.jfree.chart.axis.ColorBar;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.DialShape;
+import org.jfree.chart.plot.MeterInterval;
+import org.jfree.chart.plot.MeterPlot;
 import org.jfree.chart.plot.XYPlot;
+import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
+import org.jfree.data.Range;
 import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.data.general.DatasetChangeListener;
+import org.jfree.data.general.DatasetGroup;
+import org.jfree.data.general.ValueDataset;
 import org.jfree.experimental.chart.swt.ChartComposite;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -72,16 +83,15 @@ public class DataTableandGraph extends ViewPart {
 		/* Line Graph */
 		// Create dataset
 		DefaultCategoryDataset dataset = createDataset();
-		// Create chart
+		// Create line chart
 		JFreeChart linechart = createChart(dataset, "Method Coverage by Test Cases");
-		XYPlot xyplot = linechart.getXYPlot();
-	    xyplot.setForegroundAlpha(0.7F);
-	   
-	   
 		new ChartComposite(parent, SWT.COLOR_CYAN, linechart);
 
-		parent.setLayout(new GridLayout());
-
+	    //Create area chart
+	    JFreeChart  areaChart = createAreaChart(dataset, "Code Coverage Trend");
+		new ChartComposite(parent, SWT.COLOR_CYAN, areaChart);
+	    
+	    
 		// Get the json data
 
 		// File inputJson= new
@@ -100,7 +110,11 @@ public class DataTableandGraph extends ViewPart {
 		JSONArray chartData = (JSONArray) ((JSONObject) CodeCoverageData.get("codeCoverageTrend")).get("chartData");
 		System.out.println("ChartData " + chartData);
 		//Declare for the column Names
-		String[] propertyNames = { "fileName", "noOfCommits", "builds", "mode", "methods", "classLoc", "covered" };
+		//String[] propertyNames = { "fileName", "noOfCommits", "builds", "mode", "methods", "classLoc", "covered" };
+		
+		String[] propertyNames = { "fileName", "noOfCommits", "methods", "classLoc", "covered","release"};
+
+		
 		
 		Map<String, String> propertyToLabelMap = new HashMap<String, String>();
 		
@@ -108,45 +122,54 @@ public class DataTableandGraph extends ViewPart {
 
 		JSONArray myListArray = new JSONArray();
 		
-		Map<String,List<FileList>> TableMap = new HashMap<String,List<FileList>>();
+		//Map<String,List<FileList>> TableMap = new HashMap<String,List<FileList>>();
 		
 		for (int i = 0; i < chartData.size(); i++) {
 			
 			JSONArray fileList = (JSONArray) ((JSONObject) chartData.get(i)).get("fileList");
+			JSONObject data =(JSONObject) chartData.get(i);
+			String release = data.get("release").toString();
+			System.out.println("Release ="+release);
 			
-			List<FileList> releaseList = new ArrayList<FileList>();
+			//List<FileList> releaseLi st = new ArrayList<FileList>();
 			//			myList.add(fileList);
 			for(int j=0; j<fileList.size();j++) {
 				
 				JSONObject propertyObj = (JSONObject) fileList.get(j);
 				
+			
 				myListArray.add(propertyObj);
 				
-				propertyToLabelMap.put(propertyObj.get(propertyNames[0]).toString(), propertyNames[0].toUpperCase());
+				//System.out.println("Upper Case:"+propertyNames[0].toUpperCase());
+				propertyToLabelMap.put(propertyObj.get(propertyNames[0]).toString().toUpperCase(), propertyNames[0].toUpperCase());
 				propertyToLabelMap.put(propertyObj.get(propertyNames[1])==null?"0":propertyObj.get(propertyNames[1]).toString(), propertyNames[1].toUpperCase());
+				//propertyToLabelMap.put(propertyObj.get(propertyNames[2])==null?"0":propertyObj.get(propertyNames[2]).toString(), propertyNames[2].toUpperCase());
+				//propertyToLabelMap.put(propertyObj.get(propertyNames[3])==null?"0":propertyObj.get(propertyNames[3]).toString(), propertyNames[3].toUpperCase());
 				propertyToLabelMap.put(propertyObj.get(propertyNames[2])==null?"0":propertyObj.get(propertyNames[2]).toString(), propertyNames[2].toUpperCase());
 				propertyToLabelMap.put(propertyObj.get(propertyNames[3])==null?"0":propertyObj.get(propertyNames[3]).toString(), propertyNames[3].toUpperCase());
 				propertyToLabelMap.put(propertyObj.get(propertyNames[4])==null?"0":propertyObj.get(propertyNames[4]).toString(), propertyNames[4].toUpperCase());
-				propertyToLabelMap.put(propertyObj.get(propertyNames[5])==null?"0":propertyObj.get(propertyNames[5]).toString(), propertyNames[5].toUpperCase());
-				propertyToLabelMap.put(propertyObj.get(propertyNames[6])==null?"0":propertyObj.get(propertyNames[6]).toString(), propertyNames[6].toUpperCase());
+				propertyToLabelMap.put(release,propertyNames[5].toString());
+				
+				
 				//data will be loaded to FileList Object and then to TableMap with Release Name as key and Object as value
 				FileList fileListObj = new FileList();
 				fileListObj.setFileName(propertyObj.get(propertyNames[0]).toString());
 				fileListObj.setNoOfCommits(propertyObj.get(propertyNames[1])==null?0:Integer.parseInt(propertyObj.get(propertyNames[1]).toString()));
-				fileListObj.setBuilds(propertyObj.get(propertyNames[2])==null?0:Integer.parseInt(propertyObj.get(propertyNames[2]).toString()));
-				fileListObj.setMode(propertyObj.get(propertyNames[3])==null?0:Integer.parseInt(propertyObj.get(propertyNames[3]).toString()));
-				fileListObj.setMethods(propertyObj.get(propertyNames[4])==null?"":(propertyObj.get(propertyNames[4]).toString()));
-				fileListObj.setClassLoc(propertyObj.get(propertyNames[5])==null?0:Integer.parseInt(propertyObj.get(propertyNames[5]).toString()));
-				fileListObj.setCovered(propertyObj.get(propertyNames[6])==null?false:(boolean)(propertyObj.get(propertyNames[6])));
-				releaseList.add(fileListObj);
+				//fileListObj.setBuilds(propertyObj.get(propertyNames[2])==null?0:Integer.parseInt(propertyObj.get(propertyNames[2]).toString()));
+				//fileListObj.setMode(propertyObj.get(propertyNames[3])==null?0:Integer.parseInt(propertyObj.get(propertyNames[3]).toString()));
+				fileListObj.setMethods(propertyObj.get(propertyNames[2])==null?"":(propertyObj.get(propertyNames[2]).toString()));
+				fileListObj.setClassLoc(propertyObj.get(propertyNames[3])==null?0:Integer.parseInt(propertyObj.get(propertyNames[3]).toString()));
+				fileListObj.setCovered(propertyObj.get(propertyNames[4])==null?false:(boolean)(propertyObj.get(propertyNames[4])));
+				fileListObj.setRelease(release);
+				//releaseList.add(fileListObj);
 				myList.add(fileListObj);
 			}
-			TableMap.put(((JSONObject) chartData.get(i)).get("release").toString(), releaseList);
+			//TableMap.put(((JSONObject) chartData.get(i)).get("release").toString(), releaseList);
 		}
 		System.out.println("FileList " + myList);
 
 		/* Nat Table layers */
-
+		
 		IColumnPropertyAccessor<FileList> columnPropertyAccessor = new ReflectiveColumnPropertyAccessor<FileList>(
 				propertyNames);
 
@@ -157,6 +180,7 @@ public class DataTableandGraph extends ViewPart {
 		ViewportLayer viewportLayer = new ViewportLayer(selectionLayer);
 
 		// build the column header layer stack
+
 		IDataProvider columnHeaderDataProvider = new DefaultColumnHeaderDataProvider(propertyNames, propertyToLabelMap);
 		DataLayer columnHeaderDataLayer = new DataLayer(columnHeaderDataProvider);
 		ILayer columnHeaderLayer = new ColumnHeaderLayer(columnHeaderDataLayer, viewportLayer, selectionLayer);
@@ -180,12 +204,14 @@ public class DataTableandGraph extends ViewPart {
 
 		GridDataFactory.fillDefaults().grab(true, true).applyTo(natTable);
 
-		FillLayout fillLayout = new FillLayout();
+		 
+		
+		  FillLayout fillLayout = new FillLayout();
 		fillLayout.type = SWT.VERTICAL;
 		parent.setLayout(fillLayout);
+	
 	}
-
-	//Method to create a Graph
+	//Method to create a Line Graph
 	private DefaultCategoryDataset createDataset() {
 
 		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
@@ -223,7 +249,9 @@ public class DataTableandGraph extends ViewPart {
 		return dataset;
 	}
 
-	/*Create Graph */
+	
+	
+	/*Create Line Graph */
 
 	private org.jfree.chart.JFreeChart createChart(final DefaultCategoryDataset dataset, final String title) {
 
@@ -231,17 +259,36 @@ public class DataTableandGraph extends ViewPart {
 				"X Axis", // X-Axis Label
 				"Y Axis", // Y-Axis Label
 				dataset);
-		
-		
-		
+	
+		linechart.getPlot().setBackgroundPaint(java.awt.Color.WHITE);
 		ChartPanel chartPanel = new ChartPanel(linechart);
 		chartPanel.setPreferredSize(new java.awt.Dimension(600, 400));
-		chartPanel.setBackground(java.awt.Color.WHITE);
-
-
+		
 		return linechart;
 	}
 
+	/* Create Area Chart*/
+	private org.jfree.chart.JFreeChart createAreaChart(final DefaultCategoryDataset dataset, final String title) {
+
+		JFreeChart areachart = ChartFactory.createAreaChart(title, // Chart title
+				"X Axis", // X-Axis Label
+				"Y Axis", // Y-Axis Label
+				dataset);
+	
+		
+		areachart.getPlot().setBackgroundPaint(java.awt.Color.WHITE);
+		
+		ChartPanel chartPanel = new ChartPanel(areachart);
+		chartPanel.setPreferredSize(new java.awt.Dimension(600, 400));
+		
+
+
+		return areachart;
+	}
+	
+	
+	
+	
 	private void setContentPane(ChartPanel chartPanel) {
 		// TODO Auto-generated method stub
 
